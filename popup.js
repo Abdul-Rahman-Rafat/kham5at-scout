@@ -11,6 +11,24 @@ const resetAllBtn = document.getElementById("resetAll");
 const STORAGE_KEY = "khamsatFilterState";
 let allResults = [];
 
+// Restore last results/status/settings when the popup is reopened.
+document.addEventListener("DOMContentLoaded", async () => {
+  const saved = await chrome.storage.local.get(STORAGE_KEY);
+  const state = saved[STORAGE_KEY];
+  if (!state) return;
+
+  if (typeof state.loadMoreCount === "number")
+    loadMoreInput.value = state.loadMoreCount;
+  if (state.keywordsText) keywordsInput.value = state.keywordsText;
+  if (state.statusText) statusEl.textContent = state.statusText;
+  if (Array.isArray(state.results)) renderResults(state.results);
+});
+
+clearBtn.addEventListener("click", () => {
+  keywordsInput.value = "";
+  renderResults(allResults);
+});
+
 chrome.runtime.onMessage.addListener((msg) => {
   if (msg.action === "progress") {
     statusEl.textContent = `بتعمل Load More... (${msg.done}/${msg.total})`;
@@ -55,6 +73,16 @@ runBtn.addEventListener("click", async () => {
       const statusText = `لقيت ${response.matched.length} طلب من أصل ${response.total}`;
       statusEl.textContent = statusText;
       renderResults(response.matched);
+
+      // Persist so results are still here next time the popup opens.
+      await chrome.storage.local.set({
+        [STORAGE_KEY]: {
+          loadMoreCount,
+          keywordsText,
+          statusText,
+          results: response.matched,
+        },
+      });
     },
   );
 });
