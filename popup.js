@@ -116,3 +116,13 @@ function renderResults(items) {
     resultsEl.appendChild(div);
   }
 }
+
+// Reset all inputs and results to default state tjen save
+resetAllBtn.addEventListener("click", () => {
+  loadMoreInput.value = "";
+  keywordsInput.value = "";
+  searchInput.value = "";
+  statusEl.textContent = "";
+  renderResults([]);
+  chrome.storage.local.remove(STORAGE_KEY);
+});
