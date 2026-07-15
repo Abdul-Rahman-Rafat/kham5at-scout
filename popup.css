@@ -1,0 +1,142 @@
+:root {
+  --bg: #14161a;
+  --panel: #1d2025;
+  --text: #e8e6e1;
+  --muted: #9a9a95;
+  --accent: #fcb62e;
+  --border: #2c3036;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  width: 340px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 13px;
+}
+.wrap {
+  padding: 14px;
+}
+#resetAll {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+#resetAll:hover {
+  color: var(--text);
+}
+.title_5 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+h1 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+label {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+.keywords-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#clearKeywords {
+  margin-top: 12px;
+  width: 40%;
+  background: var(--accent);
+  color: #0a0f0e;
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+input[type="number"],
+textarea {
+  width: 100%;
+
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 13px;
+}
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  /* height: 50px; */
+}
+button {
+  margin-top: 12px;
+  width: 100%;
+  background: var(--accent);
+  color: #0a0f0e;
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+#status {
+  margin-top: 8px;
+  color: var(--muted);
+  min-height: 16px;
+}
+#results {
+  margin-top: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.item {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+.item a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+.item a:hover {
+  color: var(--accent);
+}
+.empty {
+  color: var(--muted);
+  padding: 10px 0;
+}
+#search {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 13px;
+}
